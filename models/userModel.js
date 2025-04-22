@@ -17,7 +17,10 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
   password: { type: String, required: true },
-  age: Number,
+  age: {
+    type: Number,
+    min: 18
+  },
   gender: String,
   bio: {
     type: String,
@@ -29,6 +32,8 @@ const userSchema = new mongoose.Schema({
   skills: {
     type: [String]
   }
+}, {
+  timestamps: true
 });
 
 const userModel = mongoose.model("User", userSchema);
