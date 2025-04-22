@@ -20,3 +20,18 @@
 ---
 
 ## 📁 Project Structure
+BackendWithMongoDB/
+├── config/
+│   └── db.js
+├── controllers/
+│   └── userController.js
+├── models/
+│   └── User.js
+├── routes/
+│   └── userRoutes.js
+├── middleware/
+│   └── authMiddleware.js
+├── utils/
+│   └── matcher.js
+├── index.js
+└── package.json
