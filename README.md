@@ -21,3 +21,14 @@
 
 ## 📁 Project Structure
 BackendWithMongoDB/ ├── config/             # DB config and environment setup ├── models/             # Mongoose models ├── routes/             # Express route handlers ├── controllers/        # Logic for each endpoint ├── middleware/         # (Optional) Auth, error handling ├── index.js            # Main server entry point ├── .gitignore └── package.json
+
+
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/MoizAnsari-Dev/BackendWithMongoDB.git
+cd BackendWithMongoDB
