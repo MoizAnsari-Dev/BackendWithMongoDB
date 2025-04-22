@@ -7,9 +7,17 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 const Port = process.env.PORT || 3000;
-
+//Sginup
 app.post("/signup", async (req, res) => {
   try {
+    if (
+      req.body.firstName.length === 0 ||
+      req.body.lastName.length === 0 ||
+      req.body.password.length === 0 ||
+      req.body.email.length === 0
+    ) {
+      res.send("Can not be empty fill it again");
+    }
     console.log(req.body);
 
     const user = new userModel(req.body);
@@ -21,7 +29,7 @@ app.post("/signup", async (req, res) => {
     res.send("User already Exist!!");
   }
 });
-
+//Finding the User
 app.get("/user", async (req, res) => {
   try {
     const UserId = req.body.email;
@@ -35,7 +43,7 @@ app.get("/user", async (req, res) => {
     res.send("User Not Found");
   }
 });
-
+//User feed
 app.get("/feed", async (req, res) => {
   try {
     const user = await userModel.find({});
@@ -44,7 +52,7 @@ app.get("/feed", async (req, res) => {
     res.send("SomeThing went worng");
   }
 });
-
+//Deleting the User
 app.delete("/user", async (req, res) => {
   const user = req.body._id;
   try {
@@ -58,7 +66,7 @@ app.delete("/user", async (req, res) => {
     res.status(404).send("Something Went Wrong with your side");
   }
 });
-
+//updating the User
 app.patch("/user", async (req, res) => {
   try {
     const user = req.body._id;
