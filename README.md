@@ -1,26 +1,22 @@
 # TynderForDeveloper
-Project Description
-"TynderForDeveloper is a backend API built with Node.js and MongoDB that helps developers connect and collaborate based on shared interests, skills, or projects."
 
-Features
+**TynderForDeveloper** is a backend API built using Node.js, Express, and MongoDB that helps developers connect and collaborate based on shared interests, tech stacks, and project goals — like a Tinder for devs!
 
-Developer profiles
+## 🚀 Features
 
-Matching logic
+- Developer profile creation and management
+- MongoDB database integration via Mongoose
+- RESTful API design with Express.js
+- Scalable architecture for future enhancements
+- (Coming Soon) Matching algorithm for developers
 
-MongoDB-based storage
+## 🛠️ Tech Stack
 
-JWT authentication (if included)
+- **Backend Framework:** Node.js, Express.js
+- **Database:** MongoDB, Mongoose
+- **Authentication:** (You can add JWT or OAuth)
+- **Others:** dotenv for environment management
 
-Tech Stack
+---
 
-Node.js
-
-Express.js
-
-MongoDB
-
-Mongoose
-
-(Optional: Passport/JWT, Socket.io, etc.)
-
+## 📁 Project Structure
