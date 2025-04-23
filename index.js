@@ -1,6 +1,8 @@
 import express from "express";
 import { db } from "./config/databse.js";
 import { userModel } from "./models/userModel.js";
+import { validateSignupData } from "./utils/validation.js";
+import bcrypt from 'bcrypt'
 import dotenv from "dotenv";
 
 const app = express();
@@ -10,23 +12,28 @@ const Port = process.env.PORT || 3000;
 //Sginup
 app.post("/signup", async (req, res) => {
   try {
-    if (
-      req.body.firstName.length === 0 ||
-      req.body.lastName.length === 0 ||
-      req.body.password.length === 0 ||
-      req.body.email.length === 0
-    ) {
-      res.send("Can not be empty fill it again");
-    }
-    console.log(req.body);
+    //Validation Data
+    validateSignupData(req);
+    //Encript Password
+    const {firstName, lastName, password, email, age, bio, skills} = req.body;
+    const passwordHash = await bcrypt.hash(password, 10)
+    //Creating Data
+    const user = new userModel({
+      firstName,
+      lastName,
+      email,
+      bio,
+      age,
+      skills,
+      password: passwordHash,
+    });
 
-    const user = new userModel(req.body);
-
+    console.log(passwordHash);
     await user.save();
 
     res.send("User Successfully registred");
   } catch (error) {
-    res.send("User already Exist!!");
+    res.status(400).send("Error " + error.message);
   }
 });
 //Finding the User
@@ -40,7 +47,7 @@ app.get("/user", async (req, res) => {
       res.send(findUser);
     }
   } catch (error) {
-    res.send("User Not Found");
+    res.status().send("User Not Found " + error.message);
   }
 });
 //User feed
@@ -49,7 +56,7 @@ app.get("/feed", async (req, res) => {
     const user = await userModel.find({});
     res.send(user);
   } catch (error) {
-    res.send("SomeThing went worng");
+    res.status(400).send("SomeThing went worng " + error.message);
   }
 });
 //Deleting the User
@@ -63,7 +70,9 @@ app.delete("/user", async (req, res) => {
       res.send("User successfully deleted");
     }
   } catch (error) {
-    res.status(404).send("Something Went Wrong with your side");
+    res
+      .status(400)
+      .send("Something Went Wrong with your side " + error.message);
   }
 });
 //updating the User
@@ -74,7 +83,7 @@ app.patch("/user", async (req, res) => {
     await userModel.findByIdAndUpdate(user, userData);
     res.send("User Successfully Updated");
   } catch (error) {
-    res.send("SomeThing went Worng");
+    res.status(400).send("SomeThing went Worng" + error.message);
   }
 });
 
