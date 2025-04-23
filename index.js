@@ -36,6 +36,29 @@ app.post("/signup", async (req, res) => {
     res.status(400).send("Error " + error.message);
   }
 });
+//Login
+app.post('/login', async (req, res) => {
+  try {
+    const {email, password} = req.body;
+    const user = await userModel.findOne({email: email});
+    if (!user) {
+      throw new Error("Email is not Found");
+    }
+    const passwordValidation = await bcrypt.compare(password, user.password);
+    if (passwordValidation) {
+      res.send('User Successfully login')
+    } else {
+      throw new Error("password is incorrect");
+      
+    }
+
+  } catch (error) {
+    res.status(400).send('Error: ' + error.message)
+  }
+})
+
+
+
 //Finding the User
 app.get("/user", async (req, res) => {
   try {
