@@ -1,1 +1,34 @@
 # TynderForDeveloper
+
+**TynderForDeveloper** is a backend API built using Node.js, Express, and MongoDB that helps developers connect and collaborate based on shared interests, tech stacks, and project goals — like a Tinder for devs!
+
+## 🚀 Features
+
+- Developer profile creation and management
+- MongoDB database integration via Mongoose
+- RESTful API design with Express.js
+- Scalable architecture for future enhancements
+- (Coming Soon) Matching algorithm for developers
+
+## 🛠️ Tech Stack
+
+- **Backend Framework:** Node.js, Express.js
+- **Database:** MongoDB, Mongoose
+- **Authentication:** (You can add JWT or OAuth)
+- **Others:** dotenv for environment management
+
+---
+
+## 📁 Project Structure
+BackendWithMongoDB/ ├── config/             # DB config and environment setup ├── models/             # Mongoose models ├── routes/             # Express route handlers ├── controllers/        # Logic for each endpoint ├── middleware/         # (Optional) Auth, error handling ├── index.js            # Main server entry point ├── .gitignore └── package.json
+
+
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/MoizAnsari-Dev/BackendWithMongoDB.git
+cd BackendWithMongoDB
