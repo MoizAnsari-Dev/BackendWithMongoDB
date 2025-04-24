@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import jwt from 'jsonwebtoken';
+import { authUser } from "./middleware/auth.js";
 
 const app = express();
 dotenv.config();
@@ -63,22 +64,9 @@ app.post("/login", async (req, res) => {
   }
 });
 //Profile called
-app.get('/profile', async (req, res) => {
+app.get('/profile', authUser, async (req, res) => {
   try {
-    
-    const {token} = req.cookies;
-    if (!token) {
-      throw new Error("Invalid Token please try again");
-      
-    }
-    const isTokenValide = await jwt.verify(token, "Moiz@google")
-    
-    const {_id} = isTokenValide;
-
-  console.log("Logged in User: " + _id);
-  
-
-  console.log(token);
+    const user = req.user
   res.send('Reading Cookies')
 } catch (error) {
   res.status(400).send('Error: ' + error)
