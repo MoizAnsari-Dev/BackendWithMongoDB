@@ -4,10 +4,12 @@ import { userModel } from "./models/userModel.js";
 import { validateSignupData } from "./utils/validation.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use(cookieParser())
 const Port = process.env.PORT || 3000;
 //Sginup
 app.post("/signup", async (req, res) => {
@@ -56,7 +58,7 @@ app.post("/login", async (req, res) => {
 });
 //Profile called
 app.get('/profile', async (req, res) => {
-  const cookie =
+  const cookie = req.cookies;
 })
 
 //Finding the User
