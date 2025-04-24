@@ -54,6 +54,10 @@ app.post("/login", async (req, res) => {
     res.status(400).send("Error: " + error.message);
   }
 });
+//Profile called
+app.get('/profile', async (req, res) => {
+  const cookie =
+})
 
 //Finding the User
 app.get("/user", async (req, res) => {
