@@ -5,6 +5,7 @@ import { validateSignupData } from "./utils/validation.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import jwt from 'jsonwebtoken';
 
 const app = express();
 dotenv.config();
@@ -48,6 +49,11 @@ app.post("/login", async (req, res) => {
     }
     const passwordValidation = await bcrypt.compare(password, user.password);
     if (passwordValidation) {
+      const token = await jwt.sign({_id: user._id}, "Moiz@google")
+      console.log(token);
+
+      res.cookie("token", token);
+      
       res.send("User Successfully login");
     } else {
       throw new Error("password is incorrect");
