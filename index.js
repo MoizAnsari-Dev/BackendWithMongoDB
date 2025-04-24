@@ -64,10 +64,26 @@ app.post("/login", async (req, res) => {
 });
 //Profile called
 app.get('/profile', async (req, res) => {
-  const {token} = req.cookies;
+  try {
+    
+    const {token} = req.cookies;
+    if (!token) {
+      throw new Error("Invalid Token please try again");
+      
+    }
+    const isTokenValide = await jwt.verify(token, "Moiz@google")
+    
+    const {_id} = isTokenValide;
+
+  console.log("Logged in User: " + _id);
+  
+
   console.log(token);
   res.send('Reading Cookies')
-   
+} catch (error) {
+  res.status(400).send('Error: ' + error)
+}
+  
 })
 
 //Finding the User
