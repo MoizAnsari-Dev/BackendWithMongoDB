@@ -64,7 +64,10 @@ app.post("/login", async (req, res) => {
 });
 //Profile called
 app.get('/profile', async (req, res) => {
-  const cookie = req.cookies;
+  const {token} = req.cookies;
+  console.log(token);
+  res.send('Reading Cookies')
+   
 })
 
 //Finding the User
