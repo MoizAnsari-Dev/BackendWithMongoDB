@@ -2,7 +2,7 @@ import express from "express";
 import { db } from "./config/databse.js";
 import { userModel } from "./models/userModel.js";
 import { validateSignupData } from "./utils/validation.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 
 const app = express();
@@ -15,8 +15,8 @@ app.post("/signup", async (req, res) => {
     //Validation Data
     validateSignupData(req);
     //Encript Password
-    const {firstName, lastName, password, email, age, bio, skills} = req.body;
-    const passwordHash = await bcrypt.hash(password, 10)
+    const { firstName, lastName, password, email, age, bio, skills } = req.body;
+    const passwordHash = await bcrypt.hash(password, 10);
     //Creating Data
     const user = new userModel({
       firstName,
@@ -37,27 +37,23 @@ app.post("/signup", async (req, res) => {
   }
 });
 //Login
-app.post('/login', async (req, res) => {
+app.post("/login", async (req, res) => {
   try {
-    const {email, password} = req.body;
-    const user = await userModel.findOne({email: email});
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email: email });
     if (!user) {
       throw new Error("Email is not Found");
     }
     const passwordValidation = await bcrypt.compare(password, user.password);
     if (passwordValidation) {
-      res.send('User Successfully login')
+      res.send("User Successfully login");
     } else {
       throw new Error("password is incorrect");
-      
     }
-
   } catch (error) {
-    res.status(400).send('Error: ' + error.message)
+    res.status(400).send("Error: " + error.message);
   }
-})
-
-
+});
 
 //Finding the User
 app.get("/user", async (req, res) => {
