@@ -50,7 +50,7 @@ app.post("/login", async (req, res) => {
     }
     const passwordValidation = await bcrypt.compare(password, user.password);
     if (passwordValidation) {
-      const token = await jwt.sign({_id: user._id}, "Moiz@google")
+      const token = await jwt.sign({_id: user._id}, process.env.JWT_SECRET)
       console.log(token);
 
       res.cookie("token", token);
@@ -67,62 +67,16 @@ app.post("/login", async (req, res) => {
 app.get('/profile', authUser, async (req, res) => {
   try {
     const user = req.user
+    res.send(user)
   res.send('Reading Cookies')
 } catch (error) {
-  res.status(400).send('Error: ' + error)
+  res.status(400).send('Error: ' + error.message)
 }
-  
 })
 
-//Finding the User
-app.get("/user", async (req, res) => {
-  try {
-    const UserId = req.body.email;
-    const findUser = await userModel.find({ email: UserId });
-    if (findUser.length === 0) {
-      res.send("User cant found");
-    } else {
-      res.send(findUser);
-    }
-  } catch (error) {
-    res.status().send("User Not Found " + error.message);
-  }
-});
-//User feed
-app.get("/feed", async (req, res) => {
-  try {
-    const user = await userModel.find({});
-    res.send(user);
-  } catch (error) {
-    res.status(400).send("SomeThing went worng " + error.message);
-  }
-});
-//Deleting the User
-app.delete("/user", async (req, res) => {
-  const user = req.body._id;
-  try {
-    if (!(await userModel.findById({ _id: user }))) {
-      res.send("Invalid UserId Cheack the iD");
-    } else {
-      const findUser = await userModel.findByIdAndDelete(user);
-      res.send("User successfully deleted");
-    }
-  } catch (error) {
-    res
-      .status(400)
-      .send("Something Went Wrong with your side " + error.message);
-  }
-});
-//updating the User
-app.patch("/user", async (req, res) => {
-  try {
-    const user = req.body._id;
-    const userData = req.body;
-    await userModel.findByIdAndUpdate(user, userData);
-    res.send("User Successfully Updated");
-  } catch (error) {
-    res.status(400).send("SomeThing went Worng" + error.message);
-  }
+app.post('/sendconnection', authUser, async (req, res) => {
+  console.log('Connection request send');
+  res.send('Connection to the request')
 });
 
 app.listen(Port, async () => {
