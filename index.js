@@ -50,7 +50,7 @@ app.post("/login", async (req, res) => {
     }
     const passwordValidation = await bcrypt.compare(password, user.password);
     if (passwordValidation) {
-      const token = await jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+      const token = await user.getJWT()
       console.log(token);
 
       res.cookie("token", token);
