@@ -16,13 +16,15 @@ profileRouter.get("/profile", authUser, async (req, res) => {
 profileRouter.patch("/profile/edit", authUser, async (req, res) => {
   try {
     if (!validateProfileData(req)) {
-      
-    } else {
-      
+      throw new Error("Invalid Edit Request!!");
     }
+    const loggedin = req.user;
+    Object.keys(req.body).forEach((key) => loggedin[key] === req.body[key]);
+    await loggedin.save()
+    res.send(`${loggedin.firstName} , you are updated`)
   } catch (error) {
-    
+    res.status(400).send("Error: " + error.message);
   }
-})
+});
 
 export { profileRouter };
