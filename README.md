@@ -42,3 +42,13 @@ cd BackendWithMongoDB
 3. Install Dependencies:
 
 npm install
+
+4. Start the Application:
+
+node index.js
+
+
+
+
+
+Note: Ensure that you have MongoDB installed and running on your machine. You might need to configure the database connection settings in the config/ directory. 
