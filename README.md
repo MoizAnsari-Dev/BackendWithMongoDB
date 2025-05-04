@@ -38,3 +38,7 @@ git clone https://github.com/MoizAnsari-Dev/BackendWithMongoDB.git
 2. Navigate to the Project Directory:
 
 cd BackendWithMongoDB
+
+3. Install Dependencies:
+
+npm install
