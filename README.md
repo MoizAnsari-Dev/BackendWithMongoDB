@@ -26,9 +26,11 @@ BackendWithMongoDB/ ├── config/             # DB config and environment se
 
 ---
 
-## ⚙️ Getting Started
 
-### 1. Clone the Repository
-```bash
+✅ Getting Started
+
+To explore or run the project locally: 
+
+1. Clone the Repository:
+
 git clone https://github.com/MoizAnsari-Dev/BackendWithMongoDB.git
-cd BackendWithMongoDB
