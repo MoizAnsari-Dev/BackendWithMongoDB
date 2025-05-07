@@ -28,7 +28,11 @@ const userSchema = new mongoose.Schema({
     type: Number,
     min: 18
   },
-  gender: String,
+  gender: {
+    type: String,
+    enum: ["male", "female", "other"],
+    message: `{VALUE} is not a valid gender`
+  },
   bio: {
     type: String,
     default: "Hi, I'm the part of this worlds"
