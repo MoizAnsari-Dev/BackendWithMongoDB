@@ -26,9 +26,29 @@ BackendWithMongoDB/ ├── config/             # DB config and environment se
 
 ---
 
-## ⚙️ Getting Started
 
-### 1. Clone the Repository
-```bash
+✅ Getting Started
+
+To explore or run the project locally: 
+
+1. Clone the Repository:
+
 git clone https://github.com/MoizAnsari-Dev/BackendWithMongoDB.git
+
+2. Navigate to the Project Directory:
+
 cd BackendWithMongoDB
+
+3. Install Dependencies:
+
+npm install
+
+4. Start the Application:
+
+node index.js
+
+
+
+
+
+Note: Ensure that you have MongoDB installed and running on your machine. You might need to configure the database connection settings in the config/ directory. 
