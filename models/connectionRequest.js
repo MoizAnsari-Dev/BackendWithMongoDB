@@ -4,17 +4,17 @@ const connectionSchema = new mongoose.Schema(
   {
     fromID: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true
     },
     toID: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
     },
     status: {
       type: String,
       required: true,
       enum: {
-        values: ["ignore", "interested", "accepted", "rejected"],
+        values: ["ignored", "interested", "accepted", "rejected"],
         message: `{VALUE} is incorrect status type`,
       },
     },
