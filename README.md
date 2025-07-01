@@ -23,7 +23,6 @@
 BackendWithMongoDB/ ├── config/             # DB config and environment setup ├── models/             # Mongoose models ├── routes/             # Express route handlers ├── controllers/        # Logic for each endpoint ├── middleware/         # (Optional) Auth, error handling ├── index.js            # Main server entry point ├── .gitignore └── package.json
 
 
-
 ---
 
 
