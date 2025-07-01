@@ -51,4 +51,4 @@ node index.js
 
 
 
-Note: Ensure that MongoDB is installed and running on your machine. You might need to configure the database connection settings in the config/ directory. 
+Note: Ensure that MongoDB is installed and running on your machine. You might need to configure the database connection settings in the config/ directory.
